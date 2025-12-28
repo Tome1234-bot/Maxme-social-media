@@ -99,23 +99,28 @@ export function HomeFeed() {
       </div>
     </Card>
       {/* Stories Carousel */}
-      <Card>
-        <CardContent className="pt-4">
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-            {stories.map((story) => (
-              <button key={story.id} className="flex flex-col items-center gap-2 flex-shrink-0">
-                <div className="relative">
-                  <Avatar className="h-16 w-16 ring-2 ring-primary ring-offset-2">
-                    <AvatarImage src={story.avatar || "/placeholder.svg"} />
-                    <AvatarFallback>{story.name[0]}</AvatarFallback>
-                  </Avatar>
+     <ScrollArea className="w-full whitespace-nowrap">
+      <div className="flex gap-3 p-1">
+        {stories.map((story) => (
+          <button key={story.id} className="flex flex-col items-center gap-2 flex-shrink-0 group">
+            <div className="relative">
+              <div className="p-[2px] bg-gradient-to-br from-accent via-warning to-accent rounded-full">
+                <Avatar className="h-16 w-16 border-2 border-background">
+                  <AvatarImage src={story.avatar || "/placeholder.svg"} />
+                  <AvatarFallback>{story.name[0]}</AvatarFallback>
+                </Avatar>
+              </div>
+              {story.isOwn && (
+                <div className="absolute bottom-0 right-0 gradient-glow rounded-full p-1">
+                  <Plus className="h-3 w-3 text-white" />
                 </div>
-                <span className="text-xs sm:text-sm font-medium">{story.name}</span>
-              </button>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              )}
+            </div>
+            <span className="text-xs font-medium max-w-[70px] truncate">{story.name}</span>
+          </button>
+        ))}
+      </div>
+    </ScrollArea>
 
       {/* User XP Card */}
       <Card className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-primary/20">
