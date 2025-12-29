@@ -9,7 +9,7 @@ import {
   ArrowLeft,
   Settings,
   Share2,
-  MessageSquare,
+  MessageCircle, // Changed from MessageSquare
   ArrowBigUp,
   Library,
   LayoutDashboard,
@@ -57,192 +57,160 @@ export function ProfileView() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pb-6">
-        <div className="max-w-4xl mx-auto">
-          {/* Cover Image */}
-          <div className="relative h-48 bg-gradient-to-br from-primary via-accent to-primary">
-            <div className="absolute top-4 left-4">
-              <Button variant="ghost" size="icon" className="bg-black/20 text-white hover:bg-black/30" asChild>
-                <Link href="/">
-                  <ArrowLeft className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-            <div className="absolute top-4 right-4 flex gap-2">
-              <Button variant="ghost" size="icon" className="bg-black/20 text-white hover:bg-black/30">
-                <Share2 className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="bg-black/20 text-white hover:bg-black/30" asChild>
-                <Link href="/settings">
-                  <Settings className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
+      <main className="max-w-screen-xl mx-auto">
+        {/* Cover Photo */}
+        <div className="h-48 md:h-64 bg-gradient-to-br from-primary via-accent to-primary relative">
+          <img src="/abstract-cover.jpg" alt="Cover" className="w-full h-full object-cover opacity-50" />
+        </div>
 
+        <div className="px-4">
           {/* Profile Info */}
-          <div className="px-4 -mt-16 relative z-10">
-            <div className="flex items-end gap-4 mb-4">
+          <div className="relative -mt-16 mb-6">
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-end">
               <div className="relative">
                 <Avatar className="h-32 w-32 border-4 border-background">
-                  <AvatarImage src="/diverse-group.png" />
+                  <AvatarImage src="/placeholder.svg?height=128&width=128" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <div className="absolute -bottom-1 -right-1">
-                  <Badge className="bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-600 text-white border-2 border-background shadow-lg px-3 py-1 text-xs font-semibold">
-                    Gold
-                  </Badge>
-                </div>
+                <Badge className="absolute bottom-2 right-2 gradient-glow border-0 text-white">Expert</Badge>
               </div>
-              <div className="flex-1 pb-2">
-                <Button>Follow</Button>
-              </div>
-            </div>
 
-            <div className="space-y-2 mb-4">
-              <h1 className="text-xl sm:text-2xl font-bold">John Doe</h1>
-              <p className="text-sm sm:text-base text-muted-foreground">
-                Full-stack developer passionate about building amazing web experiences. Love learning new technologies
-                and sharing knowledge with the community.
-              </p>
-            </div>
+              <div className="flex-1">
+                <h1 className="text-2xl md:text-3xl font-bold">John Doe</h1>
+                <p className="text-muted-foreground">Full Stack Developer | Tech Enthusiast | Lifelong Learner</p>
 
-            {/* Social Points */}
-            <Card className="mb-4 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-primary/20">
-              <CardContent className="pt-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Total Social Points</p>
-                    <p className="text-2xl sm:text-3xl font-bold text-primary">12,450</p>
+                {/* Social Points */}
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="gradient-glow rounded-lg px-3 py-1">
+                    <span className="text-white font-bold">2,450 SP</span>
                   </div>
-                  <Badge variant="secondary" className="text-sm sm:text-lg px-3 sm:px-4 py-1 sm:py-2">
-                    Level 24
-                  </Badge>
+                  <span className="text-sm text-muted-foreground">Social Points</span>
                 </div>
-              </CardContent>
+              </div>
+
+              <div className="flex gap-2">
+                <Button variant="outline" size="icon">
+                  <MessageCircle className="h-5 w-5" /> {/* Fixed icon */}
+                </Button>
+                <Button variant="outline" size="icon">
+                  <Share2 className="h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="icon">
+                  <Settings className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <Card className="p-4 text-center">
+              <p className="text-2xl font-bold text-accent">156</p>
+              <p className="text-sm text-muted-foreground">Posts</p>
+            </Card>
+            <Card className="p-4 text-center">
+              <p className="text-2xl font-bold text-accent">89</p>
+              <p className="text-sm text-muted-foreground">Questions</p>
+            </Card>
+            <Card className="p-4 text-center">
+              <p className="text-2xl font-bold text-accent">234</p>
+              <p className="text-sm text-muted-foreground">Discussions</p>
+            </Card>
+            <Card className="p-4 text-center">
+              <p className="text-2xl font-bold text-accent">1.2K</p>
+              <p className="text-sm text-muted-foreground">Contributions</p>
+            </Card>
+          </div>
+
+          {/* About & Categories */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <Card className="p-4 lg:col-span-2">
+              <h3 className="font-semibold mb-2 flex items-center justify-between">
+                About Me
+                <Button variant="ghost" size="sm">
+                  See More
+                </Button>
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Passionate software engineer with 5+ years of experience in building scalable web applications. Love
+                exploring new technologies and sharing knowledge with the community. Currently focusing on React,
+                Next.js, and cloud architecture.
+              </p>
             </Card>
 
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-4 mb-6">
-              <Card>
-                <CardContent className="pt-3 sm:pt-4 text-center">
-                  <p className="text-xl sm:text-2xl font-bold">234</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground">Posts</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-3 sm:pt-4 text-center">
-                  <p className="text-xl sm:text-2xl font-bold">89</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground">Questions</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-3 sm:pt-4 text-center">
-                  <p className="text-xl sm:text-2xl font-bold">156</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground">Discussions</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-3 sm:pt-4 text-center">
-                  <p className="text-xl sm:text-2xl font-bold">1.2K</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground">Contributions</p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* About & Categories */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Card>
-                <CardHeader>
-                  <h3 className="font-semibold text-sm sm:text-base">About Me</h3>
-                </CardHeader>
-                <CardContent className="space-y-2 text-xs sm:text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Location:</span> San Francisco, CA
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Joined:</span> January 2024
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Website:</span>{" "}
-                    <a href="#" className="text-primary hover:underline">
-                      johndoe.dev
-                    </a>
-                  </div>
-                  <Button variant="link" className="p-0 h-auto text-primary text-xs sm:text-sm">
-                    See more
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <h3 className="font-semibold text-sm sm:text-base">Categories</h3>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {categories.map((category) => (
-                      <Badge key={category} variant="secondary" className="text-xs">
-                        {category}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Activity Tabs */}
-            <Tabs defaultValue="posts" className="w-full">
-              <TabsList className="w-full justify-start overflow-x-auto">
-                <TabsTrigger value="posts" className="text-xs sm:text-sm">
-                  Posts
-                </TabsTrigger>
-                <TabsTrigger value="questions" className="text-xs sm:text-sm">
-                  Questions
-                </TabsTrigger>
-                <TabsTrigger value="discussions" className="text-xs sm:text-sm">
-                  Discussions
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="posts" className="space-y-4 mt-4">
-                {userPosts.map((post) => (
-                  <Card key={post.id}>
-                    <CardContent className="pt-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <Badge variant="outline" className="text-xs">
-                          {post.type}
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className={`text-xs ${
-                            post.badge === "green"
-                              ? "bg-success/15 text-success border border-success/30"
-                              : post.badge === "yellow"
-                                ? "bg-warning/15 text-warning border border-warning/30"
-                                : "bg-destructive/15 text-destructive border border-destructive/30"
-                          }`}
-                        >
-                          {post.time}
-                        </Badge>
-                      </div>
-                      <p className="text-sm sm:text-base mb-4">{post.content}</p>
-                      <div className="flex items-center gap-4 pt-2 border-t">
-                        <Button variant="ghost" size="sm" className="gap-2">
-                          <MessageSquare className="h-4 w-4" />
-                          <span className="text-xs sm:text-sm">{post.engagement.comments}</span>
-                        </Button>
-                        <Button variant="ghost" size="sm" className="gap-2">
-                          <ArrowBigUp className="h-4 w-4" />
-                          <span className="text-xs sm:text-sm">{post.engagement.votes}</span>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </TabsContent>
-            </Tabs>
+            <Card className="p-4">
+              <h3 className="font-semibold mb-3">Categories</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="secondary">Web Development</Badge>
+                <Badge variant="secondary">JavaScript</Badge>
+                <Badge variant="secondary">React</Badge>
+                <Badge variant="secondary">Node.js</Badge>
+                <Badge variant="secondary">Cloud</Badge>
+                <Badge variant="secondary">AI/ML</Badge>
+              </div>
+            </Card>
           </div>
+
+          {/* Activity Tabs - Fixed structure */}
+          <Tabs defaultValue="posts" className="w-full">
+            <TabsList className="w-full justify-start overflow-x-auto">
+              <TabsTrigger value="posts" className="text-xs sm:text-sm">
+                Posts
+              </TabsTrigger>
+              <TabsTrigger value="questions" className="text-xs sm:text-sm">
+                Questions
+              </TabsTrigger>
+              <TabsTrigger value="discussions" className="text-xs sm:text-sm">
+                Discussions
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="posts" className="space-y-4 mt-4">
+              {userPosts.map((post) => (
+                <Card key={post.id}>
+                  <CardContent className="pt-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <Badge variant="outline" className="text-xs">
+                        {post.type}
+                      </Badge>
+                      <Badge
+                        variant="secondary"
+                        className={`text-xs ${
+                          post.badge === "green"
+                            ? "bg-success/15 text-success border border-success/30"
+                            : post.badge === "yellow"
+                            ? "bg-warning/15 text-warning border border-warning/30"
+                            : "bg-destructive/15 text-destructive border border-destructive/30"
+                        }`}
+                      >
+                        {post.time}
+                      </Badge>
+                    </div>
+                    <p className="text-sm sm:text-base mb-4">{post.content}</p>
+                    <div className="flex items-center gap-4 pt-2 border-t">
+                      <Button variant="ghost" size="sm" className="gap-2">
+                        <MessageCircle className="h-4 w-4" /> {/* Fixed icon */}
+                        <span className="text-xs sm:text-sm">{post.engagement.comments}</span>
+                      </Button>
+                      <Button variant="ghost" size="sm" className="gap-2">
+                        <ArrowBigUp className="h-4 w-4" />
+                        <span className="text-xs sm:text-sm">{post.engagement.votes}</span>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </TabsContent>
+            
+            {/* Add other TabsContent components for questions and discussions */}
+            <TabsContent value="questions" className="space-y-4 mt-4">
+              {/* Add questions content here */}
+            </TabsContent>
+            
+            <TabsContent value="discussions" className="space-y-4 mt-4">
+              {/* Add discussions content here */}
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
 
